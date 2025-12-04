@@ -7,8 +7,7 @@ const orderSchema = new mongoose.Schema({
             quantity: Number
         }
     ],
-    totalPrice: Number,
-    createdAt: { type: Date, default: Date.now }
-});
+    totalPrice: Number
+}, { timestamps: true });
 
 export default mongoose.model("Order", orderSchema);
