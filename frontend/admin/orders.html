@@ -1,68 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Quản lý Đơn hàng</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="flex bg-gray-100">
+<body class="bg-gray-100">
 
-  <!-- Sidebar -->
-  <div class="w-64 min-h-screen bg-white shadow-lg p-6">
-    <h2 class="text-2xl font-bold mb-6">Admin Panel</h2>
-    <ul class="space-y-4">
-      <li><a href="categories.html" class="text-blue-600">Danh mục</a></li>
-      <li><a href="foods.html" class="text-blue-600">Món ăn</a></li>
-      <li><a href="orders.html" class="text-blue-600 font-semibold">Đơn hàng</a></li>
-    </ul>
-  </div>
+  <div class="flex">
 
-  <!-- MAIN -->
-  <div class="flex-1 p-10">
-    <h1 class="text-3xl font-semibold mb-6">Quản lý Đơn hàng</h1>
-
-    <!-- Danh sách món -->
-    <h2 class="text-xl font-semibold mb-2">Danh sách món</h2>
-    <div id="foodList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8"></div>
-
-    <!-- Giỏ hàng -->
-    <h2 class="text-xl font-semibold mb-2">Giỏ hàng</h2>
-    <table class="w-full bg-white rounded shadow mb-4">
-      <thead class="bg-gray-200">
-        <tr>
-          <th class="p-3">Tên món</th>
-          <th class="p-3">SL</th>
-          <th class="p-3">Giá</th>
-          <th class="p-3">Xóa</th>
-        </tr>
-      </thead>
-      <tbody id="cartList"></tbody>
-    </table>
-
-    <div class="flex justify-between items-center">
-      <h3 class="text-xl font-bold">Tổng tiền: <span id="total">0</span> đ</h3>
-      <button onclick="createOrder()"
-        class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
-        Tạo đơn hàng
-      </button>
+    <!-- SIDEBAR -->
+    <div class="w-64 bg-white shadow min-h-screen p-6">
+      <h2 class="text-2xl font-bold mb-6">Admin Panel</h2>
+      <ul class="space-y-3">
+        <li><a href="categories.html" class="text-blue-600 hover:underline">Danh mục</a></li>
+        <li><a href="foods.html" class="text-blue-600 hover:underline">Món ăn</a></li>
+        <li><a href="orders.html" class="font-semibold underline">Đơn hàng</a></li>
+      </ul>
     </div>
 
-    <hr class="my-6" />
+    <!-- MAIN CONTENT -->
+    <div class="flex-1 p-10">
 
-    <!-- Danh sách đơn hàng -->
-    <h2 class="text-xl font-semibold mb-2">Danh sách đơn hàng</h2>
-    <table class="w-full bg-white rounded shadow">
-      <thead class="bg-gray-200">
-        <tr>
-          <th class="p-3">Món</th>
-          <th class="p-3">Tổng tiền</th>
-          <th class="p-3">Ngày tạo</th>
-        </tr>
-      </thead>
-      <tbody id="orderList"></tbody>
-    </table>
+      <h1 class="text-3xl font-bold mb-6">Danh sách Đơn hàng</h1>
 
+      <table class="w-full bg-white rounded shadow">
+        <thead class="bg-gray-200">
+          <tr>
+            <th class="p-3 text-left">Món</th>
+            <th class="p-3 text-center">Tổng tiền</th>
+            <th class="p-3 text-center">Ngày tạo</th>
+          </tr>
+        </thead>
+        <tbody id="orderList"></tbody>
+      </table>
+
+    </div>
   </div>
 
   <script src="js/orders.js"></script>
