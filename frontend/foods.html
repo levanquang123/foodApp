@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý Món ăn</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex bg-gray-100">
+
+  <!-- Sidebar -->
+  <div class="w-64 min-h-screen bg-white shadow-lg p-6">
+    <h2 class="text-2xl font-bold mb-6">Admin Panel</h2>
+    <ul class="space-y-4">
+      <li><a href="categories.html" class="text-blue-600">Quản lý Danh mục</a></li>
+      <li><a href="foods.html" class="text-blue-600 font-semibold">Quản lý Món ăn</a></li>
+      <li><a href="orders.html" class="text-blue-600">Quản lý Đơn hàng</a></li>
+    </ul>
+  </div>
+
+  <!-- Main -->
+  <div class="flex-1 p-10">
+    <h1 class="text-3xl font-semibold mb-6">Quản lý Món ăn</h1>
+
+    <!-- Form thêm món ăn -->
+    <div class="bg-white p-6 rounded shadow-md w-[400px] mb-6">
+      <h3 class="text-xl font-semibold mb-4">Thêm món ăn</h3>
+
+      <input id="foodName" type="text" placeholder="Tên món"
+        class="border rounded p-2 w-full mb-3">
+
+      <input id="foodPrice" type="number" placeholder="Giá món"
+        class="border rounded p-2 w-full mb-3">
+
+      <input id="foodDesc" type="text" placeholder="Mô tả"
+        class="border rounded p-2 w-full mb-3">
+
+      <select id="foodCategory"
+        class="border rounded p-2 w-full mb-3"></select>
+
+      <button onclick="addFood()"
+        class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        Thêm món
+      </button>
+    </div>
+
+    <!-- Danh sách món ăn -->
+    <table class="w-full bg-white shadow-md rounded">
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="p-3 text-left">Tên món</th>
+          <th class="p-3 text-left">Giá</th>
+          <th class="p-3 text-left">Mô tả</th>
+          <th class="p-3 text-left">Danh mục</th>
+          <th class="p-3 text-center">Hành động</th>
+        </tr>
+      </thead>
+      <tbody id="foodList"></tbody>
+    </table>
+
+  </div>
+
+  <script src="js/foods.js"></script>
+</body>
+</html>

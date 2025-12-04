@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý Danh mục</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex bg-gray-100">
+
+  <!-- Sidebar -->
+  <div class="w-64 min-h-screen bg-white shadow-lg p-6">
+    <h2 class="text-2xl font-bold mb-6">Admin Panel</h2>
+    <ul class="space-y-4">
+      <li><a href="categories.html" class="text-blue-600 font-semibold">Quản lý Danh mục</a></li>
+      <li><a href="foods.html" class="text-blue-600">Quản lý Món ăn</a></li>
+      <li><a href="orders.html" class="text-blue-600">Quản lý Đơn hàng</a></li>
+    </ul>
+  </div>
+
+  <!-- Main -->
+  <div class="flex-1 p-10">
+    <h1 class="text-3xl font-semibold mb-6">Quản lý Danh mục</h1>
+
+    <!-- Form thêm danh mục -->
+    <div class="bg-white p-6 rounded shadow-md w-80 mb-6">
+      <h3 class="text-xl font-semibold mb-4">Thêm danh mục</h3>
+      <input id="categoryName" type="text" placeholder="Tên danh mục"
+        class="border rounded p-2 w-full mb-3">
+      <button onclick="addCategory()"
+        class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        Thêm
+      </button>
+    </div>
+
+    <!-- Danh sách danh mục -->
+    <table class="w-full bg-white shadow-md rounded">
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="p-3 text-left">Tên danh mục</th>
+          <th class="p-3 text-center">Hành động</th>
+        </tr>
+      </thead>
+      <tbody id="categoryList"></tbody>
+    </table>
+
+  </div>
+
+  <script src="js/categories.js"></script>
+</body>
+</html>
