@@ -1,7 +1,10 @@
+const API_ORDER = "http://localhost:5000/api/orders";
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// ========== LOAD CART ==========
 function loadCart() {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
     const table = document.getElementById("cartTable");
-    const totalText = document.getElementById("total");
+    const totalEl = document.getElementById("totalPrice");
 
     table.innerHTML = "";
     let total = 0;
@@ -13,38 +16,73 @@ function loadCart() {
         <tr class="border-b">
             <td class="p-3">${item.name}</td>
 
-            <td class="p-3 text-center">
-                <button onclick="changeQty(${index}, -1)" class="px-2 bg-gray-300">-</button>
-                <span class="mx-2">${item.quantity}</span>
-                <button onclick="changeQty(${index}, 1)" class="px-2 bg-gray-300">+</button>
+            <td class="p-3 text-center flex gap-2 justify-center">
+                <button onclick="changeQty(${index}, -1)" class="bg-gray-300 px-2 rounded">-</button>
+                <span>${item.quantity}</span>
+                <button onclick="changeQty(${index}, 1)" class="bg-gray-300 px-2 rounded">+</button>
             </td>
 
             <td class="p-3 text-center">${item.price * item.quantity} đ</td>
 
             <td class="p-3 text-center">
-                <button onclick="removeItem(${index})" class="bg-red-500 text-white px-3 py-1 rounded">X</button>
+                <button onclick="removeItem(${index})" class="bg-red-500 text-white px-2 rounded">X</button>
             </td>
         </tr>`;
     });
 
-    totalText.innerText = total + " đ";
+    totalEl.innerText = total + " đ";
 }
 
-function changeQty(index, diff) {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    cart[index].quantity += diff;
+// ========== CHANGE QUANTITY ==========
+function changeQty(index, amount) {
+    cart[index].quantity += amount;
 
-    if (cart[index].quantity <= 0) cart.splice(index, 1);
+    if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+    }
 
     localStorage.setItem("cart", JSON.stringify(cart));
     loadCart();
 }
 
+// ========== REMOVE ITEM ==========
 function removeItem(index) {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
     cart.splice(index, 1);
     localStorage.setItem("cart", JSON.stringify(cart));
     loadCart();
+}
+
+// ========== PLACE ORDER ==========
+async function placeOrder() {
+    if (cart.length === 0) {
+        alert("Giỏ hàng đang trống!");
+        return;
+    }
+
+    const orderData = {
+        items: cart.map(item => ({
+            foodId: item.id,
+            quantity: item.quantity
+        })),
+        totalPrice: cart.reduce((sum, x) => sum + x.price * x.quantity, 0)
+    };
+
+    const res = await fetch(API_ORDER, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(orderData)
+    });
+
+    const result = await res.json();
+
+    // Lưu order cho trang checkout
+    localStorage.setItem("lastOrder", JSON.stringify(result.order));
+
+    // Xóa giỏ hàng
+    localStorage.removeItem("cart");
+
+    // Chuyển sang trang thanh toán
+    window.location.href = "checkout.html";
 }
 
 loadCart();
