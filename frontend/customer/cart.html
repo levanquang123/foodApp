@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Giỏ hàng</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+
+  <div class="max-w-5xl mx-auto py-10">
+
+    <h1 class="text-3xl font-bold mb-6">Giỏ hàng của bạn</h1>
+
+    <table class="w-full bg-white rounded shadow">
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="p-3 text-left">Món</th>
+          <th class="p-3 text-center">SL</th>
+          <th class="p-3 text-center">Giá</th>
+          <th class="p-3 text-center">Xóa</th>
+        </tr>
+      </thead>
+      <tbody id="cartTable"></tbody>
+    </table>
+
+    <p class="text-xl font-bold mt-4">Tổng tiền: <span id="total">0 đ</span></p>
+
+    <button onclick="createOrder()"
+      class="mt-4 bg-green-600 text-white px-5 py-2 rounded hover:bg-green-700">
+      Đặt hàng
+    </button>
+
+  </div>
+
+  <script src="js/cart.js"></script>
+</body>
+</html>
